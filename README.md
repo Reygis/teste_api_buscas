@@ -65,7 +65,7 @@ Inicie o servidor
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID da universities |
+| `id`      | `string` | **Obrigatório**. O ID da universidade |
 
 #### Criar nova universidade
 
@@ -97,7 +97,7 @@ Passar Json com as informações como exemplo:
 ```
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID da universities |
+| `id`      | `string` | **Obrigatório**. O ID da universidade |
 
 Passar Json com as informações como exemplo:
 ```
@@ -123,16 +123,7 @@ Passar Json com as informações como exemplo:
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID da universities |
-
-
-## Rodando os testes
-
-Para rodar os testes, rode o seguinte comando
-
-```bash
-  npm run test
-```
+| `id`      | `string` | **Obrigatório**. O ID da universidade |
 
 
 ## Feedback
