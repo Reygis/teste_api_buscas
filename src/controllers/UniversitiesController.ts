@@ -15,7 +15,7 @@ export class UniversitiesController {
             take: 20
         })
         return res.send(universities)
-    }
+        }
 
         const university = await universitiesRepository.find({
             where: {
@@ -46,7 +46,7 @@ export class UniversitiesController {
                     country: req.body.country,
                     ['state-province'] : req.body['state-province']
                 }});
-        if (validadeUniversity) {return res.status(400).send('encontrou algo')}
+        if (validadeUniversity) {return res.status(400).send('University already exist in this state/country')}
 
         let newUniversity: University = new University()
         newUniversity.name = req.body.name
@@ -63,6 +63,18 @@ export class UniversitiesController {
     }
 
     static update = async (req: Request, res: Response) => {
+        const id:any = req.params.id
+
+        let newUniversity = await universitiesRepository.findOne(id)
+        if (!newUniversity) {return res.status(404).send("University not found by id") };
+
+        if(req.body.name) {newUniversity.name = req.body.name};
+        if(req.body.domains) {newUniversity.domains = req.body.domains};
+        if(req.body.web_pages) {newUniversity.web_pages = req.body.web_pages};   
+        
+        await universitiesRepository.save(newUniversity)
+            .then(()=>{return res.status(201).json(newUniversity)})
+            .catch((error)=>{return res.json(error)})
 
     }
 
@@ -74,7 +86,7 @@ export class UniversitiesController {
                 universitiesRepository.delete(id)
                 return res.send('University deleted')
             })
-            .catch(()=> {return res.status(404).send("University not found")})
+            .catch(()=> {return res.status(404).send("University not found by id")})
         
     }
 }
