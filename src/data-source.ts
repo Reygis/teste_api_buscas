@@ -2,9 +2,8 @@ import { DataSource } from "typeorm"
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
-    host: "localhost",
-    port: 27017,
-    database: "test",
+    url: process.env.DB_URL,
+    database: process.env.DB_NAME,
     entities: [`${__dirname}/**/entities/*.{ts,js}`],
     useUnifiedTopology: true
 })  
