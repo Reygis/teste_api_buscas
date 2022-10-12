@@ -5,5 +5,6 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 27017,
     database: "test",
-    entities: [`${__dirname}/**/entities/*.{ts,js}`]
+    entities: [`${__dirname}/**/entities/*.{ts,js}`],
+    useUnifiedTopology: true
 })  

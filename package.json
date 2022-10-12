@@ -4,9 +4,9 @@
   "description": "Teste para vaga Backend Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "build": "npx tsc",
     "dev": "nodemon --exec ts-node ./src/index.ts",
-    "seed": "npx ts-node ./src/seeder/index.ts",
+    "seed": "node ./dist/seeder/index.js",
     "start": "node ./dist/index.js"
   },
   "repository": {

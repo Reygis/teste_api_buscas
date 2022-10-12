@@ -7,4 +7,6 @@ exports.AppDataSource = new typeorm_1.DataSource({
     host: "localhost",
     port: 27017,
     database: "test",
+    entities: [`${__dirname}/**/entities/*.{ts,js}`],
+    useUnifiedTopology: true
 });

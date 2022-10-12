@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {University} from '../entities/Universities';
+import { University } from '../entities/Universities';
 import { universitiesRepository } from '../repositories/universitiesRepository';
 import { AppDataSource } from '../data-source'
 
-(async () => {
-    await AppDataSource.initialize()
-    
-    const universities = [
+
+AppDataSource.initialize().then(async () => {
+
+    const countries = [
         'argentina',
         'brazil',
         'chile',
@@ -19,12 +19,12 @@ import { AppDataSource } from '../data-source'
 
     const APIurl = 'http://universities.hipolabs.com/search?country=';
 
-    for(const university of universities){
-        console.log(`Importing universities from: ${university}`);
+    for (const country of countries) {
+        console.log(`Importing universities from: ${country}`);
 
-        await axios.get(`${APIurl}${university}`).then(async res => {
-            
-            for(const data of res.data){
+        await axios.get(`${APIurl}${country}`).then(async res => {
+
+            for (const data of res.data) {
 
                 let newUniversity: University = new University()
                 newUniversity.name = data.name
@@ -35,16 +35,15 @@ import { AppDataSource } from '../data-source'
                 newUniversity['state-province'] = data['state-province']
 
                 await universitiesRepository.save(newUniversity)
-                    
-            }   
+
+            }
 
 
         }).catch(error => console.log(error))
-    
+
     }
     process.exit();
-}
 
-)();
+})
 
 
