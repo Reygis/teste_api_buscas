@@ -56,9 +56,13 @@ export class UniversitiesController {
         newUniversity.web_pages = req.body.web_pages   
         newUniversity['state-province'] = req.body['state-province']
 
-        await universitiesRepository.save(newUniversity)
-            .then(()=>{return res.status(201).json(newUniversity)})
-            .catch((error)=>{return res.json(error)})
+        try {
+            await universitiesRepository.save(newUniversity)
+        } catch (error) {
+            return res.json(error)
+        }
+
+        return res.status(201).json(newUniversity)
 
     }
 
@@ -72,21 +76,27 @@ export class UniversitiesController {
         if(req.body.domains) {newUniversity.domains = req.body.domains};
         if(req.body.web_pages) {newUniversity.web_pages = req.body.web_pages};   
         
-        await universitiesRepository.save(newUniversity)
-            .then(()=>{return res.status(201).json(newUniversity)})
-            .catch((error)=>{return res.json(error)})
+
+        try {
+            await universitiesRepository.save(newUniversity)
+        } catch (error) {
+            return res.json(error)
+        }
+
+        return res.status(201).json(newUniversity)
 
     }
 
     static delete = async (req: Request, res: Response) => {
         const id:any = req.params.id
 
-        await universitiesRepository.findOneOrFail(id)
-            .then(()=> {
-                universitiesRepository.delete(id)
-                return res.send('University deleted')
-            })
-            .catch(()=> {return res.status(404).send("University not found by id")})
+        try {
+            await universitiesRepository.findOneOrFail(id)
+            await universitiesRepository.delete(id)
+            return res.status(204).send()
+        } catch (error) {
+            return res.status(404).send("University not found by id")
+        }
         
     }
 }

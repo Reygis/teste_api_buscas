@@ -53,9 +53,13 @@ UniversitiesController.create = async (req, res) => {
     newUniversity.domains = req.body.domains;
     newUniversity.web_pages = req.body.web_pages;
     newUniversity['state-province'] = req.body['state-province'];
-    await universitiesRepository_1.universitiesRepository.save(newUniversity)
-        .then(() => { return res.status(201).json(newUniversity); })
-        .catch((error) => { return res.json(error); });
+    try {
+        await universitiesRepository_1.universitiesRepository.save(newUniversity);
+    }
+    catch (error) {
+        return res.json(error);
+    }
+    return res.status(201).json(newUniversity);
 };
 UniversitiesController.update = async (req, res) => {
     const id = req.params.id;
@@ -76,16 +80,22 @@ UniversitiesController.update = async (req, res) => {
         newUniversity.web_pages = req.body.web_pages;
     }
     ;
-    await universitiesRepository_1.universitiesRepository.save(newUniversity)
-        .then(() => { return res.status(201).json(newUniversity); })
-        .catch((error) => { return res.json(error); });
+    try {
+        await universitiesRepository_1.universitiesRepository.save(newUniversity);
+    }
+    catch (error) {
+        return res.json(error);
+    }
+    return res.status(201).json(newUniversity);
 };
 UniversitiesController.delete = async (req, res) => {
     const id = req.params.id;
-    await universitiesRepository_1.universitiesRepository.findOneOrFail(id)
-        .then(() => {
-        universitiesRepository_1.universitiesRepository.delete(id);
-        return res.send('University deleted');
-    })
-        .catch(() => { return res.status(404).send("University not found by id"); });
+    try {
+        await universitiesRepository_1.universitiesRepository.findOneOrFail(id);
+        await universitiesRepository_1.universitiesRepository.delete(id);
+        return res.status(204).send();
+    }
+    catch (error) {
+        return res.status(404).send("University not found by id");
+    }
 };
