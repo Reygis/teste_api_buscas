@@ -45,6 +45,14 @@ Inicie o servidor
   npm run start
 ```
 
+## Rodando os testes
+
+Para rodar os testes, rode o seguinte comando (necessario ter populado o banco com a seed)
+
+```bash
+  npm run test
+```
+
 ## Documentação da API
 
 #### Retorna todos as universidades
