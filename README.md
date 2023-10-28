@@ -1,7 +1,7 @@
 
 # Teste Back-end
  
-Teste de back-end realizado para vaga de desenvolvedor Node.js na empresa Bis2Bis Ecomerce.
+Teste de back-end realizado para vaga de desenvolvedor Node.js.
 
 ## Variáveis de Ambiente
 
