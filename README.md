@@ -18,7 +18,7 @@ informações constam no arquivo .env.example
 Clone o projeto
 
 ```bash
-  git clone https://github.com/Reygis/teste_bis2bis.git
+  git clone https://github.com/Reygis/teste_api_buscas.git
 ```
 
 Entre no diretório do projeto
